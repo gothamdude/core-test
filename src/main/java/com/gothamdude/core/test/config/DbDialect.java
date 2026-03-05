@@ -8,20 +8,36 @@ package com.gothamdude.core.test.config;
  */
 public enum DbDialect {
 
+    /** H2 native mode – no emulation. */
     H2("H2"),
 
+    /** Emulate PostgreSQL 14 behaviour. */
     POSTGRESQL("PostgreSQL"),
 
+    /** Emulate Oracle 11g behaviour (data types, dual, rownum, …). */
     ORACLE("Oracle"),
 
+    /** Emulate MS SQL Server 2022 behaviour. */
     MSSQL("MSSQLServer");
 
     private final String h2Mode;
 
+    /**
+     * Returns the MODE string that must be appended to the H2 JDBC URL,
+     * e.g. {@code ;MODE=Oracle}.
+     */
     DbDialect(String h2Mode) {
         this.h2Mode = h2Mode;
     }
 
+    /**
+     * Parse a string value (from a properties file) into a {@link DbDialect}.
+     *
+     * <p>Accepted values (case-insensitive): {@code H2}, {@code ORACLE},
+     * {@code MSSQL}, {@code POSTGRESQL} / {@code POSTGRES}.
+     *
+     * @throws IllegalArgumentException if the value is unrecognised.
+     */
     public static DbDialect fromString(String value) {
         if (value == null) {
             throw new IllegalArgumentException("Dialect value must not be null");

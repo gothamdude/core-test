@@ -8,6 +8,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility for validating that SQL script paths exist on the classpath
+ * before they are handed to {@link org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder}.
+ *
+ * <p>Early validation produces a clear error message rather than a cryptic
+ * Spring or H2 exception at database-bootstrap time.
+ */
 public final class ScriptLoader {
 
     private static final Logger log = LoggerFactory.getLogger(ScriptLoader.class);
