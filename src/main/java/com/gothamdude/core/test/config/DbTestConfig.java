@@ -1,6 +1,5 @@
 package com.gothamdude.core.test.config;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +14,7 @@ public final class DbTestConfig {
     private DbTestConfig(Builder b) {
         this.dbDialect = Objects.requireNonNull(b.dbDialect, "dbDialect must not be null");
         this.databaseName = Objects.requireNonNull(b.databaseName, "databaseName must not be null");
-        this.schemaScripts = (List.copyOf(b.schemaScripts);
+        this.schemaScripts = List.copyOf(b.schemaScripts);
         this.dataScripts = List.copyOf(b.dataScripts);
     }
 
