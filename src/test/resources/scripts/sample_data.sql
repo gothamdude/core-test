@@ -1,0 +1,1 @@
+INSERT INTO sample (id) VALUES (1);

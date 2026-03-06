@@ -65,10 +65,7 @@ public final class EmbeddedDatabaseFactory {
     public static final String TEST_DB_DIALECT = "test.db.dialect";
     public static final String TEST_DB_NAME = "test.db.dialect";
 
-    private EmbeddedDatabaseFactory() {
-    }
-
-    { /* static utility */ }
+    private EmbeddedDatabaseFactory() {} /* static utility */
 
     // ------------------------------------------------------------------
     // Public API
@@ -172,7 +169,7 @@ public final class EmbeddedDatabaseFactory {
      */
     static String buildH2Url(DbDialect dialect, String dbName) {
         StringBuilder url = new StringBuilder("jdbc:h2:mem:")
-                .append("")
+                .append(buildUniqueName(dbName))
                 .append(";DB_CLOSE_DELAY=-1")
                 .append(";DB_CLOSE_ON_EXIT=FALSE");
 
