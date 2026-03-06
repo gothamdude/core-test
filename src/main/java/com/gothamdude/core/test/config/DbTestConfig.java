@@ -71,13 +71,17 @@ public final class DbTestConfig {
         private Builder() {
         }
 
-        /** Set the dialect (H2 mode) to emulate. Defaults to {@link DbDialect#H2}. */
+        /**
+         * Set the dialect (H2 mode) to emulate. Defaults to {@link DbDialect#H2}.
+         */
         public Builder dialect(DbDialect dialect) {
             this.dbDialect = dialect;
             return this;
         }
 
-        /** Logical H2 in-memory database name. Defaults to {@code testdb}. */
+        /**
+         * Logical H2 in-memory database name. Defaults to {@code testdb}.
+         */
         public Builder databaseName(String name) {
             this.databaseName = name;
             return this;
@@ -95,7 +99,9 @@ public final class DbTestConfig {
             return this;
         }
 
-        /** Overload accepting a {@link List}. */
+        /**
+         * Overload accepting a {@link List}.
+         */
         public Builder schemaScripts(List<String> paths) {
             this.schemaScripts = List.copyOf(paths);
             return this;
@@ -113,7 +119,9 @@ public final class DbTestConfig {
             return this;
         }
 
-        /** Overload accepting a {@link List}. */
+        /**
+         * Overload accepting a {@link List}.
+         */
         public Builder dataScripts(List<String> paths) {
             this.dataScripts = List.copyOf(paths);
             return this;
