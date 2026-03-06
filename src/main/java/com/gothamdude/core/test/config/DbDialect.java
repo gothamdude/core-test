@@ -8,16 +8,24 @@ package com.gothamdude.core.test.config;
  */
 public enum DbDialect {
 
-    /** H2 native mode – no emulation. */
+    /**
+     * H2 native mode – no emulation.
+     */
     H2("H2"),
 
-    /** Emulate PostgreSQL 14 behaviour. */
+    /**
+     * Emulate PostgreSQL 14 behaviour.
+     */
     POSTGRESQL("PostgreSQL"),
 
-    /** Emulate Oracle 11g behaviour (data types, dual, rownum, …). */
+    /**
+     * Emulate Oracle 11g behaviour (data types, dual, rownum, …).
+     */
     ORACLE("Oracle"),
 
-    /** Emulate MS SQL Server 2022 behaviour. */
+    /**
+     * Emulate MS SQL Server 2022 behaviour.
+     */
     MSSQL("MSSQLServer");
 
     private final String h2Mode;
@@ -28,6 +36,14 @@ public enum DbDialect {
      */
     DbDialect(String h2Mode) {
         this.h2Mode = h2Mode;
+    }
+
+    /**
+     * Returns the MODE string that must be appended to the H2 JDBC URL,
+     * e.g. {@code ;MODE=Oracle}.
+     */
+    public String getH2Mode() {
+        return h2Mode;
     }
 
     /**
