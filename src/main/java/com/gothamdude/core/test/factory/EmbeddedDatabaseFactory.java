@@ -63,7 +63,7 @@ public final class EmbeddedDatabaseFactory {
 
     // Property keys
     public static final String TEST_DB_DIALECT = "test.db.dialect";
-    public static final String TEST_DB_NAME = "test.db.dialect";
+    public static final String TEST_DB_NAME = "test.db.name";
 
     private EmbeddedDatabaseFactory() {} /* static utility */
 
