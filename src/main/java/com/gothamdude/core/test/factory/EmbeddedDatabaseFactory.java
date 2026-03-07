@@ -179,7 +179,8 @@ public final class EmbeddedDatabaseFactory {
 
         // Dialect-specific compatibility knobs
         switch (dialect) {
-            case ORACLE -> url.append(";NON_KEYWORDS=VALUE") // Oracle reserved words
+            case ORACLE -> url.append(";DATABASE_TO_LOWER=FALSE")  // Oracle defaults to uppercase for object and fields
+                    .append(";NON_KEYWORDS=VALUE")  // Oracle reserved words
                     .append(";DEFAULT_NULL_ORDERING=LAST");  // Oracle null ordering
             case MSSQL -> url.append(";CASE_INSENSITIVE_IDENTIFIERS=TRUE");
             case POSTGRESQL -> url.append(";DEFAULT_NULL_ORDERING=LAST");
