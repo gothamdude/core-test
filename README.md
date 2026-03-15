@@ -1,4 +1,4 @@
-# core-test — Source Classes Reference
+# com.gothamdude.core-test 
 
 > A reusable, framework-agnostic integration and end-to-end testing library backed by H2 v2
 > in-memory databases with first-class dialect emulation for **Oracle 11g**, **MS SQL Server 2022**,
