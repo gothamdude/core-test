@@ -6,6 +6,7 @@ import com.gothamdude.core.test.factory.EmbeddedDatabaseFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 
 import javax.sql.DataSource;
@@ -52,10 +53,13 @@ public final class DbTestContext implements AutoCloseable {
 
     private final EmbeddedDatabase embeddedDatabase;
     private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private DbTestContext(EmbeddedDatabase db) {
         this.embeddedDatabase = db;
         this.jdbcTemplate = new JdbcTemplate(db);
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
+
     }
 
     // ------------------------------------------------------------------
@@ -75,6 +79,13 @@ public final class DbTestContext implements AutoCloseable {
         return jdbcTemplate;
     }
 
+    /**
+     * Pre-configured {@link NamedParameterJdbcTemplate} with jdbcTemplate embedded.
+     * Handy for assertions and ad-hoc queries inside tests.
+     */
+    public  NamedParameterJdbcTemplate namedJdbc() {
+        return namedParameterJdbcTemplate;
+    }
 
     // ------------------------------------------------------------------
     // Lifecycle
