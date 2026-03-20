@@ -21,50 +21,23 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <h2.version>2.2.224</h2.version>
-        <spring.jdbc.version>6.2.15</spring.jdbc.version>
-        <slf4j.version>2.0.13</slf4j.version>
-        <logback.version>1.5.25</logback.version>
         <junit.version>5.10.2</junit.version>
         <assertj.version>3.27.7</assertj.version>
         <mockito.version>5.12.0</mockito.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.gothamdude</groupId>
+            <artifactId>core-data</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring.jdbc.version}</version>
-        </dependency>
-
-        <!-- spring-jdbc needs spring-core / spring-beans transitively,
-             but we add spring-context so @PropertySource helpers work -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.jdbc.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
