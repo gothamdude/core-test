@@ -47,7 +47,6 @@ class DbTestConfigTest {
         DbTestConfig config = DbTestConfig.builder()
                 .databaseName("my_test_db")
                 .build();
-
         assertEquals("my_test_db", config.getDatabaseName());
     }
 
@@ -58,7 +57,7 @@ class DbTestConfigTest {
     @Test
     void build_withSchemaScriptsVarargs_storesScripts() {
         DbTestConfig config = DbTestConfig.builder()
-                .schemaScripts("db/schema.sql", "db/constraints.sql")
+                .withSchemaScripts("db/schema.sql", "db/constraints.sql")
                 .build();
 
         assertEquals(List.of("db/schema.sql", "db/constraints.sql"), config.getSchemaScripts());
@@ -68,7 +67,7 @@ class DbTestConfigTest {
     void build_withSchemaScriptsList_storesScripts() {
         List<String> scripts = List.of("db/schema.sql");
         DbTestConfig config = DbTestConfig.builder()
-                .schemaScripts(scripts)
+                .withSchemaScripts(scripts)
                 .build();
 
         assertEquals(scripts, config.getSchemaScripts());
@@ -77,7 +76,7 @@ class DbTestConfigTest {
     @Test
     void schemaScripts_isImmutable() {
         DbTestConfig config = DbTestConfig.builder()
-                .schemaScripts("db/schema.sql")
+                .withSchemaScripts("db/schema.sql")
                 .build();
 
         assertThrows(UnsupportedOperationException.class,
@@ -91,7 +90,7 @@ class DbTestConfigTest {
     @Test
     void build_withDataScriptsVarargs_storesScripts() {
         DbTestConfig config = DbTestConfig.builder()
-                .dataScripts("db/data.sql", "db/seed.sql")
+                .withDataScripts("db/data.sql", "db/seed.sql")
                 .build();
 
         assertEquals(List.of("db/data.sql", "db/seed.sql"), config.getDataScripts());
@@ -101,7 +100,7 @@ class DbTestConfigTest {
     void build_withDataScriptsList_storesScripts() {
         List<String> scripts = List.of("db/data.sql");
         DbTestConfig config = DbTestConfig.builder()
-                .dataScripts(scripts)
+                .withDataScripts(scripts)
                 .build();
 
         assertEquals(scripts, config.getDataScripts());
@@ -110,7 +109,7 @@ class DbTestConfigTest {
     @Test
     void dataScripts_isImmutable() {
         DbTestConfig config = DbTestConfig.builder()
-                .dataScripts("db/data.sql")
+                .withDataScripts("db/data.sql")
                 .build();
 
         assertThrows(UnsupportedOperationException.class,
@@ -142,8 +141,8 @@ class DbTestConfigTest {
         DbTestConfig config = DbTestConfig.builder()
                 .dialect(DbDialect.ORACLE)
                 .databaseName("oratest")
-                .schemaScripts("db/schema.sql")
-                .dataScripts("db/data.sql")
+                .withSchemaScripts("db/schema.sql")
+                .withDataScripts("db/data.sql")
                 .build();
 
         assertAll(
