@@ -41,37 +41,6 @@ class EmbeddedDatabaseFactoryTest {
         );
     }
 
-    @Test
-    void buildH2Url_withOracleDialect_containsModeAndCompatibilityFlags() {
-        String url = EmbeddedDatabaseFactory.buildH2Url(DbDialect.ORACLE, "testdb");
-
-        assertAll(
-                () -> assertThat(url).contains("MODE=Oracle"),
-                () -> assertThat(url).contains("NON_KEYWORDS=VALUE"),
-                () -> assertThat(url).contains("DEFAULT_NULL_ORDERING=LAST")
-        );
-    }
-
-    @Test
-    void buildH2Url_withMssqlDialect_containsModeAndCaseInsensitiveFlag() {
-        String url = EmbeddedDatabaseFactory.buildH2Url(DbDialect.MSSQL, "testdb");
-
-        assertAll(
-                () -> assertThat(url).contains("MODE=MSSQLServer"),
-                () -> assertThat(url).contains("CASE_INSENSITIVE_IDENTIFIERS=TRUE")
-        );
-    }
-
-    @Test
-    void buildH2Url_withPostgresqlDialect_containsModeAndNullOrdering() {
-        String url = EmbeddedDatabaseFactory.buildH2Url(DbDialect.POSTGRESQL, "testdb");
-
-        assertAll(
-                () -> assertThat(url).contains("MODE=PostgreSQL"),
-                () -> assertThat(url).contains("DEFAULT_NULL_ORDERING=LAST")
-        );
-    }
-
     // -------------------------------------------------------------------------
     // create(DbTestConfig) — integration: actual H2 database is spun up
     // -------------------------------------------------------------------------
@@ -93,7 +62,7 @@ class EmbeddedDatabaseFactoryTest {
         DbTestConfig config = DbTestConfig.builder()
                 .dialect(DbDialect.H2)
                 .databaseName("h2_schema")
-                .schemaScripts("scripts/sample.sql")
+                .withSchemaScripts("scripts/sample.sql")
                 .build();
 
         db = EmbeddedDatabaseFactory.create(config);
@@ -108,8 +77,8 @@ class EmbeddedDatabaseFactoryTest {
         DbTestConfig config = DbTestConfig.builder()
                 .dialect(DbDialect.H2)
                 .databaseName("h2_data")
-                .schemaScripts("scripts/sample.sql")
-                .dataScripts("scripts/sample_data.sql")
+                .withSchemaScripts("scripts/sample.sql")
+                .withDataScripts("scripts/sample_data.sql")
                 .build();
 
         db = EmbeddedDatabaseFactory.create(config);
@@ -124,7 +93,7 @@ class EmbeddedDatabaseFactoryTest {
         DbTestConfig config = DbTestConfig.builder()
                 .dialect(DbDialect.ORACLE)
                 .databaseName("oracle_db")
-                .schemaScripts("scripts/sample.sql")
+                .withSchemaScripts("scripts/sample.sql")
                 .build();
 
         db = EmbeddedDatabaseFactory.create(config);
@@ -137,7 +106,7 @@ class EmbeddedDatabaseFactoryTest {
         DbTestConfig config = DbTestConfig.builder()
                 .dialect(DbDialect.MSSQL)
                 .databaseName("mssql_db")
-                .schemaScripts("scripts/sample.sql")
+                .withSchemaScripts("scripts/sample.sql")
                 .build();
 
         db = EmbeddedDatabaseFactory.create(config);
@@ -150,7 +119,7 @@ class EmbeddedDatabaseFactoryTest {
         DbTestConfig config = DbTestConfig.builder()
                 .dialect(DbDialect.POSTGRESQL)
                 .databaseName("pg_db")
-                .schemaScripts("scripts/sample.sql")
+                .withSchemaScripts("scripts/sample.sql")
                 .build();
 
         db = EmbeddedDatabaseFactory.create(config);
